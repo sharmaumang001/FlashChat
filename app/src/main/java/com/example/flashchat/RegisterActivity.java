@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
             cancel = true;
         }
         if(!TextUtils.isEmpty(mEmail)){
-            mRegiterEmailView.setError("The Field is reuired");
+            mRegiterEmailView.setError("The Field is required");
             mfocusView = mRegiterEmailView;
             cancel= true;
         }else if(!isEmailValid(mEmail)){
