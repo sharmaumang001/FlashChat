@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signInExistingUser(View V ){
-
+        attemptLogin();
     }
 
     public void registerNewUser (View V ){
@@ -73,12 +73,13 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "LOGIN IN PROCESS", Toast.LENGTH_SHORT).show();
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(!task.isSuccessful()){
                     Log.d("flashchat","Login attempt unsuccessful"+task.getException());
+                    showErrorToUser("LOGIN attempt Unsuccessful");
                 }else {
                     Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                     finish();
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public void showErrorToUser(String message){
 
        new  AlertDialog.Builder(this).setTitle("Oops")
-               .setMessage("Login Filed")
+               .setMessage(message)
                .setPositiveButton(android.R.string.ok,null)
                .setIcon(R.mipmap.ic_warning_icon)
                .show();
