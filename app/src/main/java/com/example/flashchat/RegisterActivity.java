@@ -1,15 +1,20 @@
 package com.example.flashchat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +37,19 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterEmailView= findViewById(R.id.emailRegisterId);
         mRegiterPasswordView= findViewById(R.id.passwordRegisterId);
         mConfirmPasswordView = findViewById(R.id.passwordConfirmId);
+
+
+         mConfirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == R.integer.register_form_finished || id == EditorInfo.IME_NULL) {
+                    attemptRegistration();
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -98,21 +116,40 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("flashchat","Create user Completed"+task.isSuccessful());
+                Log.d("flashchat", "Create user Completed" + task.isSuccessful());
 
                 if(!task.isSuccessful()){
-                    Log.d("flashchat","Create user Not Complted ");
-                }
 
+                    Log.d("flashchat","Create user Not Complted ");
+                    showErrorDialog("Registration Attempt failed!!!");
+                    showErrorDialog("There was problem in signing in!");
+
+                }else {
+
+                    saveDisplayName();
+                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+                    finish();
+                    startActivity(intent);
+                }
             }
         });
 
     }
 
+    public void saveDisplayName(){
+        String userName = mRegisterEmailView.getText().toString();
+        SharedPreferences prefs = getSharedPreferences("ChatPrefs",0);
+        prefs.edit().putString("DISPLAY _NAME_KEY",userName).apply();
+    }
 
 
-
-
-
+    public void showErrorDialog(String messase) {
+        new AlertDialog.Builder(this)
+                .setTitle("Oops")
+                .setMessage(messase)
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(R.mipmap.ic_warning_icon)
+                .show();
+    }
 
 }

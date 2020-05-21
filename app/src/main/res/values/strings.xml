@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Flash Chat</string>
+    <string name="toast_name">Registration Complete</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
