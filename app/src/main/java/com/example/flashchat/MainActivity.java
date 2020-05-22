@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("flashchat","Login attempt unsuccessful"+task.getException());
                     showErrorToUser("LOGIN attempt Unsuccessful");
                 }else {
+
                     Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                     finish();
                     startActivity((intent));

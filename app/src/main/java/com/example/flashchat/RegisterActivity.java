@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public AutoCompleteTextView mRegisterEmailView,mRegisterUserNameView;
-    public EditText mRegiterPasswordView,mConfirmPasswordView;
+    public EditText mRegisterPasswordView,mConfirmPasswordView;
     private FirebaseAuth mAuth;
 
     @Override
@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mRegisterUserNameView = findViewById(R.id.usernameId);
         mRegisterEmailView= findViewById(R.id.emailRegisterId);
-        mRegiterPasswordView= findViewById(R.id.passwordRegisterId);
+        mRegisterPasswordView= findViewById(R.id.passwordRegisterId);
         mConfirmPasswordView = findViewById(R.id.passwordConfirmId);
 
 
@@ -67,10 +67,10 @@ public class RegisterActivity extends AppCompatActivity {
     public void attemptRegistration(){
 
         mRegisterEmailView.setError(null);
-        mRegiterPasswordView.setError(null);
+        mRegisterPasswordView.setError(null);
 
         String mEmail = mRegisterEmailView.getText().toString();
-        String mPassword = mRegiterPasswordView.getText().toString();
+        String mPassword = mRegisterPasswordView.getText().toString();
 
         Log.d("flashchat","The Email is "+mEmail);
 
@@ -78,8 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
         View mfocusView= null;
 
         if(!TextUtils.isEmpty(mPassword) && (!isPasswordValid(mPassword))){
-            mRegiterPasswordView.setError("Password is too short or does not match");
-            mfocusView = mRegiterPasswordView;
+            mRegisterPasswordView.setError("Password is too short or does not match");
+            mfocusView = mRegisterPasswordView;
             cancel = true;
         }
         if(TextUtils.isEmpty(mEmail)){
@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void createFireBaseUser(){
 
         String email = mRegisterEmailView.getText().toString();
-        String password = mRegiterPasswordView.getText().toString();
+        String password = mRegisterPasswordView.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -124,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!task.isSuccessful()){
 
-                    Log.d("flashchat","Create user Not Complted ");
+                    Log.d("flashchat","Create user Not Completed ");
                     showErrorDialog("Registration Attempt failed!!!");
                     showErrorDialog("There was problem in signing in!");
 
