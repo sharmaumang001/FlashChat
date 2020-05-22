@@ -8,7 +8,7 @@
     <ListView
         android:id="@+id/listViewID"
         android:layout_width="match_parent"
-        android:layout_height="640dp"
+        android:layout_height="668dp"
         android:backgroundTint="#1C1B1B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,18 +22,20 @@
     <ImageButton
         android:id="@+id/sendButtonId"
         android:layout_width="99dp"
-        android:layout_height="89dp"
+        android:layout_height="60dp"
         android:layout_marginTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/messageId"
         app:layout_constraintTop_toBottomOf="@+id/listViewID"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@android:drawable/ic_menu_send" />
 
     <EditText
         android:id="@+id/messageId"
-        android:layout_width="294dp"
-        android:layout_height="89dp"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
         android:layout_marginTop="2dp"
         android:ems="10"
         android:hint="                   Enter Message"
@@ -43,6 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listViewID" />
+        app:layout_constraintTop_toBottomOf="@+id/listViewID"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
