@@ -51,6 +51,32 @@ public class ChatActivity extends AppCompatActivity {
         mArrayList = new ArrayList<InstantMessage>();
         mDataBaseReference = FirebaseDatabase.getInstance().getReference().child("Messages");
 
+        mDataBaseReference.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                for(DataSnapshot DataSnapshot1: dataSnapshot.getChildren()){
+
+                    InstantMessage p = DataSnapshot1.getValue(InstantMessage.class);
+                    mArrayList.add(p);
+                }
+                mAdapter = new theChatListAdapter(ChatActivity.this,mArrayList);
+                mChatList.setAdapter(mAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ChatActivity.this,"OPPS...something went wrong",Toast.LENGTH_SHORT);
+
+
+            }
+        });
+
+
 
 
 
