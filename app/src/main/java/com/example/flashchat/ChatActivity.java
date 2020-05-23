@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import java.security.cert.PolicyNode;
+
 import java.util.ArrayList;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import javax.security.auth.callback.CallbackHandler;
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -70,7 +69,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ChatActivity.this,"OPPS...something went wrong",Toast.LENGTH_SHORT);
+                Toast.makeText(ChatActivity.this,"OPPSSS ...something went wrong",Toast.LENGTH_SHORT);
 
 
             }
