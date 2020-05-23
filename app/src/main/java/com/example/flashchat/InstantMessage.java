@@ -1,7 +1,8 @@
 package com.example.flashchat;
 
 public class InstantMessage {
-    private String message,author;
+    private String message;
+    private String author;
 
     public InstantMessage(String message, String author) {
         this.message = message;
@@ -15,7 +16,15 @@ public class InstantMessage {
         return message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public String getAuthor() {
         return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

@@ -1,6 +1,9 @@
 package com.example.flashchat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,20 +12,31 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
+
+import java.security.cert.PolicyNode;
+import java.util.ArrayList;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import javax.security.auth.callback.CallbackHandler;
+
 
 public class ChatActivity extends AppCompatActivity {
 
-    ListView mChatList;
+    RecyclerView mChatList;
     EditText mTypeMessage;
     ImageButton mSendButton;
     private String mDisplayName;
     private DatabaseReference mDataBaseReference;
+    private ArrayList<InstantMessage> mArrayList;
+    theChatListAdapter mAdapter;
 
 
     @Override
@@ -31,9 +45,15 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_chat);
 
         setupDisplayName();
-        mDataBaseReference = FirebaseDatabase.getInstance().getReference();
 
         mChatList = findViewById(R.id.listViewID);
+        mChatList.setLayoutManager(new LinearLayoutManager(this));
+        mArrayList = new ArrayList<InstantMessage>();
+        mDataBaseReference = FirebaseDatabase.getInstance().getReference().child("Messages");
+
+
+
+
         mTypeMessage = findViewById(R.id.messageId);
         mSendButton = findViewById(R.id.sendButtonId);
 
@@ -67,12 +87,14 @@ public class ChatActivity extends AppCompatActivity {
     public void sendMessage(){
 
         String inputMessage = mTypeMessage.getText().toString();
-        Log.d("flashchat","themessage is  "+inputMessage);
+        Log.d("flashchat","The message is  "+inputMessage);
         if(!inputMessage.equals("")){
             InstantMessage chat = new InstantMessage(inputMessage,mDisplayName);
             mDataBaseReference = FirebaseDatabase.getInstance().getReference();
             mDataBaseReference.child("Messages").push().setValue(chat);
             mTypeMessage.setText("");
+
+
         }
     }
 
