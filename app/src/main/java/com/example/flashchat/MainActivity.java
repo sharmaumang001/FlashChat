@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import es.dmoral.toasty.Toasty;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText mEmailView,mPasswordView;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(email)||TextUtils.isEmpty(password))
         return;
 
-        Toast.makeText(this, "LOGIN IN PROCESS", Toast.LENGTH_SHORT).show();
+        Toasty.info(this, "LOGIN IN PROCESS", Toast.LENGTH_SHORT).show();
 
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!task.isSuccessful()){
                     Log.d("flashchat","Login attempt unsuccessful"+task.getException());
-                    showErrorToUser("LOGIN attempt Unsuccessful");
+                    showErrorToUser("Login Attempt Unsuccessful");
                 }else {
 
                     Intent intent = new Intent(MainActivity.this, ChatActivity.class);
