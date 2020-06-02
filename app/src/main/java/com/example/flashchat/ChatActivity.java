@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import es.dmoral.toasty.Toasty;
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -56,6 +57,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                mArrayList.clear();
+
 
                 for(DataSnapshot DataSnapshot1: dataSnapshot.getChildren()){
 
@@ -65,17 +68,16 @@ public class ChatActivity extends AppCompatActivity {
                 mAdapter = new theChatListAdapter(ChatActivity.this,mArrayList);
                 mChatList.setAdapter(mAdapter);
 
+
+                mChatList.scrollToPosition(mAdapter.mData.size()-1);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ChatActivity.this,"OPPSSS ...something went wrong",Toast.LENGTH_SHORT);
-
-
+                Toasty.error(ChatActivity.this,"OPPSSS ...something went wrong",Toast.LENGTH_SHORT);
             }
         });
-
-
 
 
 

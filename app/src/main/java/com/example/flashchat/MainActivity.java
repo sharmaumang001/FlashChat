@@ -28,7 +28,6 @@ import es.dmoral.toasty.Toasty;
 public class MainActivity extends AppCompatActivity {
 
     EditText mEmailView,mPasswordView;
-    Button mSignInButton,mRegisterButton;
     private FirebaseAuth mAuth;
 
 
