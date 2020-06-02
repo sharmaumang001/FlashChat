@@ -1,8 +1,6 @@
 package com.example.flashchat;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +43,6 @@ public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mAuthorView,mMessageView;
-
 
         public ViewHolder(final View itemView) {
             super(itemView);

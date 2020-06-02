@@ -100,7 +100,7 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    public void setupDisplayName(){
+    private void setupDisplayName(){
         SharedPreferences prefs = getSharedPreferences(RegisterActivity.CHAT_PREFS,MODE_PRIVATE);
 
         mDisplayName = prefs.getString(RegisterActivity.DISPLAY_NAME_KEY,null);
