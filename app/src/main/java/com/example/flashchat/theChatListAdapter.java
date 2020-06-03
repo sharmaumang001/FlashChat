@@ -29,6 +29,9 @@ public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+
+
         holder.mAuthorView.setText(mData.get(position).getAuthor());
         holder.mMessageView.setText(mData.get(position).getMessage());
     }
@@ -49,6 +52,10 @@ public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.
            mAuthorView = (TextView) itemView.findViewById(R.id.author);
            mMessageView = (TextView) itemView.findViewById(R.id.message);
         }
+    }
+
+    public void SetChatRowAppreance(Boolean isItMe,ViewHolder view){
+
     }
 
 }
