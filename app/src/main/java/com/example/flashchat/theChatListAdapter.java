@@ -41,7 +41,6 @@ public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.
         SetChatRowAppreance(Isme,holder);
 
 
-
         holder.mAuthorView.setText(mData.get(position).getAuthor());
         holder.mMessageView.setText(mData.get(position).getMessage());
     }

@@ -1,10 +1,12 @@
 package com.example.flashchat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,6 +24,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
+
+import java.util.Map;
+import java.util.Set;
 
 import es.dmoral.toasty.Toasty;
 
@@ -50,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences("UserInfo",MODE_PRIVATE);
+
+        String Email =  prefs.getString("UserEmail",null);
+        String Password = prefs.getString("UserPassword",null);
+
+
+        mEmailView.setText(Email);
+        mPasswordView.setText(Password);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -91,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences prefs =getSharedPreferences("UserInfo",0);
+        prefs.edit().putString("UserEmail",email).apply();
+        prefs.edit().putString("UserPassword",password).apply();
     }
 
     public void showErrorToUser(String message){
