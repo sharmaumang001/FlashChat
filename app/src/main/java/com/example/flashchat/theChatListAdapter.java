@@ -1,6 +1,8 @@
 package com.example.flashchat;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.ViewHolder>{
 
     Context mContext;
     ArrayList<InstantMessage> mData;
+    String mDisplayName;
 
 
     public theChatListAdapter(Context c , ArrayList<InstantMessage>p){
         mContext =c;
         mData =p;
+
+
     }
 
 
@@ -30,11 +37,16 @@ public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        Boolean Isme = mData.get(position).getAuthor().equals(mDisplayName);
+        SetChatRowAppreance(Isme,holder);
+
 
 
         holder.mAuthorView.setText(mData.get(position).getAuthor());
         holder.mMessageView.setText(mData.get(position).getMessage());
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -54,7 +66,15 @@ public class theChatListAdapter extends RecyclerView.Adapter<theChatListAdapter.
         }
     }
 
-    public void SetChatRowAppreance(Boolean isItMe,ViewHolder view){
+    public void SetChatRowAppreance(Boolean isItMe,ViewHolder holder){
+
+        if(isItMe){
+            holder.mAuthorView.setGravity(1);
+            holder.mMessageView.setGravity(1);
+        }else {
+            holder.mAuthorView.setGravity(0);
+            holder.mAuthorView.setGravity(0);
+        }
 
     }
 

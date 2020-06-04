@@ -141,7 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void saveDisplayName(){
-        String userName = mRegisterEmailView.getText().toString();
+        String userName = mRegisterUserNameView.getText().toString();
         SharedPreferences prefs = getSharedPreferences(CHAT_PREFS,0);
         prefs.edit().putString(DISPLAY_NAME_KEY,userName).apply();
     }

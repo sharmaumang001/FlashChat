@@ -34,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
     EditText mTypeMessage;
     ImageButton mSendButton;
     private String mDisplayName;
-    private DatabaseReference mDataBaseReference;
+    public DatabaseReference mDataBaseReference;
     private ArrayList<InstantMessage> mArrayList;
     theChatListAdapter mAdapter;
 
@@ -124,8 +124,5 @@ public class ChatActivity extends AppCompatActivity {
 
         }
     }
-
-
-
 
 }
